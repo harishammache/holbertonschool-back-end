@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 from sys import argv
 import requests
+
+
 """
     using the REST API for a given employee ID
     returns informations about his TODO list progress

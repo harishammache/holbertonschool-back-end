@@ -1,14 +1,17 @@
 #!/usr/bin/python3
-from sys import argv
-import requests
 """
     using the REST API for a given employee ID
     returns informations about his TODO list progress
 """
 
 
+from sys import argv
+import requests
+
+
 def employee_id(employe_id):
     """returns information about his/her TODO list progress."""
+
     url = f"https://jsonplaceholder.typicode.com/todos?userId={employe_id}"
     url_name = f"https://jsonplaceholder.typicode.com/users/{employe_id}"
     response_name = requests.get(url_name)
@@ -25,7 +28,7 @@ def employee_id(employe_id):
     for completed in todos:
         if completed['completed']:
             num_completed_tasks += 1
-            print(f"\t{completed['title']}")
+            print(f"\t {completed['title']}")
     total_tasks = len(todos)
 
 

@@ -17,7 +17,7 @@ def employee_id(employe_id):
     url_name = f"https://jsonplaceholder.typicode.com/users/{employe_id}"
     response_name = requests.get(url_name)
     employee_data = response_name.json()
-    EMPLOYEE_NAME = employee_data['name']
+    EMPLOYEE_NAME = employee_data['username']
 
     response_todo = requests.get(url)
     todos = response_todo.json()
@@ -28,10 +28,10 @@ def employee_id(employe_id):
         if completed['completed']:
             NUMBER_OF_DONE_TASKS += 1
             todo_list.append([employe_id, EMPLOYEE_NAME,
-                             "Completed", completed['title']])
+                             'TRUE', completed['title']])
         else:
             todo_list.append([employe_id, EMPLOYEE_NAME,
-                             "Not Completed", completed['title']])
+                             'FALSE', completed['title']])
     TOTAL_NUMBER_OF_TASKS = len(todos)
 
     csv_file_name = f"{employe_id}.csv"

@@ -5,9 +5,9 @@
 """
 
 
+import json
 import requests
 from sys import argv
-import json
 
 
 def employee_id(USER_ID):

@@ -5,9 +5,9 @@
 """
 
 
+import csv
 import requests
 from sys import argv
-import csv
 
 
 def employee_id(employe_id):

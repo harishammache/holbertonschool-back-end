@@ -36,4 +36,5 @@ def employee_id(employe_id):
 
 
 if __name__ == "__main__":
-    employee_id(int(argv[1]))
+    employe = (int(argv[1]))
+    employee_id(employe)

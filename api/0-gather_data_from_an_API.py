@@ -29,9 +29,9 @@ def employee_id(employe_id):
 
     print(f"Employee {EMPLOYEE_NAME} is done with tasks\
 ({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):")
-    for completed in todos:
-        if completed['completed']:
-            print(f"\t {completed['title']}")
+    for TASK_TITLE in todos:
+        if TASK_TITLE['completed']:
+            print(f"\t {TASK_TITLE['title']}")
 
 
 if __name__ == "__main__":

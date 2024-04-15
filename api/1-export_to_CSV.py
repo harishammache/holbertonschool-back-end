@@ -10,36 +10,27 @@ import requests
 from sys import argv
 
 
-def employee_id(employe_id):
+def employee_id(USER_ID):
     """returns information about his/her TODO list progress."""
 
-    url = f"https://jsonplaceholder.typicode.com/todos?userId={employe_id}"
-    url_name = f"https://jsonplaceholder.typicode.com/users/{employe_id}"
+    url = f"https://jsonplaceholder.typicode.com/todos?userId={USER_ID}"
+    url_name = f"https://jsonplaceholder.typicode.com/users/{USER_ID}"
     response_name = requests.get(url_name)
     employee_data = response_name.json()
-    EMPLOYEE_NAME = employee_data['username']
+    USERNAME = employee_data['username']
 
     response_todo = requests.get(url)
     todos = response_todo.json()
-    todo_list = []
 
-    NUMBER_OF_DONE_TASKS = 0
-    for completed in todos:
-        if completed['completed']:
-            NUMBER_OF_DONE_TASKS += 1
-            todo_list.append([employe_id, EMPLOYEE_NAME,
-                             'TRUE', completed['title']])
-        else:
-            todo_list.append([employe_id, EMPLOYEE_NAME,
-                             'FALSE', completed['title']])
-    TOTAL_NUMBER_OF_TASKS = len(todos)
-
-    csv_file_name = f"{employe_id}.csv"
+    csv_file_name = f"{USER_ID}.csv"
     with open(csv_file_name, 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS",
-                         "TASK_TITLE"])
-        writer.writerows(todo_list)
+        writer = csv.writer(file, quoting=csv.QUOTE_ALL)
+        for task in todos:
+            TASK_COMPLETED_STATUS = task
+            TASK_TITLE = task
+            writer.writerow([USER_ID, USERNAME,
+                             TASK_COMPLETED_STATUS['completed'],
+                             TASK_TITLE['title']])
 
 
 if __name__ == "__main__":

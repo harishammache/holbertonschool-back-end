@@ -23,13 +23,16 @@ def employee_id(employe_id):
 
     num_completed_tasks = 0
     total_tasks = 0
+    for completed in todos:
+        if completed['completed']:
+            num_completed_tasks += 1
+    total_tasks = len(todos)
+
     print(f"Employee {employee_name} is done with tasks\
 ({num_completed_tasks}/{total_tasks}):")
     for completed in todos:
         if completed['completed']:
-            num_completed_tasks += 1
             print(f"\t {completed['title']}")
-    total_tasks = len(todos)
 
 
 if __name__ == "__main__":

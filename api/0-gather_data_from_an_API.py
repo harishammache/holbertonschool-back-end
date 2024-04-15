@@ -5,8 +5,8 @@
 """
 
 
-from sys import argv
 import requests
+from sys import argv
 
 
 def employee_id(employe_id):

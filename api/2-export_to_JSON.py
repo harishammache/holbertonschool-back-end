@@ -31,9 +31,9 @@ def employee_id(USER_ID):
             "username": USERNAME
         })
 
-    json_file_name = {USER_ID: user_tasks}
-    with open(f"{USER_ID}.json", 'w') as json_file:
-        json.dump(json_file_name, json_file)
+    json_file_name = f"{USER_ID}.json"
+    with open(json_file_name, 'w') as json_file:
+        json.dump({USER_ID: user_tasks}, json_file)
 
 
 if __name__ == "__main__":

@@ -5,8 +5,9 @@
 """
 
 
-from sys import argv
 import requests
+from sys import argv
+import csv
 
 
 def employee_id(employe_id):
@@ -20,18 +21,25 @@ def employee_id(employe_id):
 
     response_todo = requests.get(url)
     todos = response_todo.json()
+    todo_list = []
 
     NUMBER_OF_DONE_TASKS = 0
     for completed in todos:
         if completed['completed']:
             NUMBER_OF_DONE_TASKS += 1
+            todo_list.append([employe_id, EMPLOYEE_NAME,
+                             "Completed", completed['title']])
+        else:
+            todo_list.append([employe_id, EMPLOYEE_NAME,
+                             "Not Completed", completed['title']])
     TOTAL_NUMBER_OF_TASKS = len(todos)
 
-    print(f"Employee {EMPLOYEE_NAME} is done with tasks\
-({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):")
-    for TASK_TITLE in todos:
-        if TASK_TITLE['completed']:
-            print(f"\t {TASK_TITLE['title']}")
+    csv_file_name = f"{employe_id}.csv"
+    with open(csv_file_name, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS",
+                         "TASK_TITLE"])
+        writer.writerows(todo_list)
 
 
 if __name__ == "__main__":
